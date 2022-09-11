@@ -20,6 +20,12 @@ pipeline{
                 sh "npm test"
             }
         }
+        stage('Deploy'){
+            sh '''
+               oc project parasharsingh8086-greetings
+               oc start-build greeting-service --follow --wait
+            '''
+        }
 
         // Add the "Deploy" stage here
     }
